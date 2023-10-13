@@ -1,0 +1,198 @@
+.basket__container {
+    padding-top: 50px;
+    background: #FFDF8C;
+    padding-bottom: 130px;
+}
+
+.basket__wrapper {
+    margin: 0 auto;
+    max-width: 821px;
+    padding-bottom: 130px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.basket__title {
+    color: var(--black-color);
+    font-family: "Proxima Nova Bold";
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.32px;
+}
+
+.basket__title span {
+    margin-left: 17px;
+}
+
+.basket__clear-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: var(--gray-b6);
+    font-family: "Proxima Nova";
+    border: none;
+    background: var(--transparent);
+    cursor: pointer;
+}
+
+.basket__clear-btn:hover {
+    color: #2d2c2c;
+}
+
+.basket__clear-btn:hover svg path {
+    stroke: #2d2c2c;
+}
+
+.order__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.order__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--f9-color);
+    padding-top: 44px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.box__img {
+    flex-basis: 80px;
+    width: 80px;
+}
+
+.box__titles {}
+
+.box__title {
+    color: var(--black-color);
+    font-family: "Proxima Nova Bold";
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.22px;
+}
+
+.box__subtitle {
+    color: var(--gray-8d);
+    font-family: "Proxima Nova";
+    font-size: 18px;
+    letter-spacing: 0.18px;
+}
+
+.order__counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.counter__btn {
+    cursor: pointer;
+}
+
+.counter__btn:hover path {
+    fill: #a73001;
+}
+
+.counter__btn:hover circle {
+    stroke: #a73001;
+}
+
+.counter__value,
+.item__price {
+    color: var(--black-color);
+    font-family: "Proxima Nova Bold";
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.22px;
+}
+
+.item__btn-delete {
+    cursor: pointer;
+}
+
+.item__btn-delete:hover svg circle {
+    stroke: #000;
+}
+
+.item__btn-delete:hover svg path {
+    fill: black;
+}
+
+.statistics {
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.statistics__number-of-pizzas,
+.statistics__price {
+    color: var(--black-color);
+    font-family: "Proxima Nova";
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.22px;
+}
+
+.statistics__number-of-pizzas b {
+    font-family: "Proxima Nova Bold";
+}
+
+.bold__orange {
+    color: var(--orange-color);
+    font-family: "Proxima Nova Bold";
+}
+
+.basket__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__back {
+    color: var(--gray-b6);
+    padding: 17px 25px;
+    border: 1px solid #D3D3D3;
+    border-radius: 30px;
+    text-align: center;
+    font-family: "Proxima Nova";
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav__back:hover {
+    border: 1px solid #787575;
+    color: #292929;
+}
+
+.nav__back span {
+    margin-left: 5px;
+}
+
+.nav__pay {
+    cursor: pointer;
+    font-family: "Proxima Nova Bold";
+    font-weight: 700;
+    color: var(--white-color);
+    padding: 17px 25px;
+    border-radius: 30px;
+    background: var(--orange-color);
+    transition: box-shadow 200ms linear;
+}
+
+.nav__pay:hover {
+    box-shadow: 0 0 15px 1px rgb(176, 176, 176);
+}

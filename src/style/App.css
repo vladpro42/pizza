@@ -17,6 +17,8 @@
   --nav-btn-color: #2C2C2C;
   --black-color: #000;
   --gray-f3: #F3F3F3;
+  --gray-b6: #B6B6B6;
+  --gray-8b: #8D8D8D;
 }
 
 html {
@@ -28,6 +30,11 @@ html {
 *::before {
   box-sizing: border-box;
   font-size: 16px;
+}
+
+button {
+  border: none;
+  background: var(--transparent);
 }
 
 
@@ -43,7 +50,10 @@ html {
   border-radius: 10px;
 }
 
-.header {}
+.header {
+  margin-left: 77px;
+  margin-bottom: 40px;
+}
 
 .header__inner {
   display: flex;
@@ -91,6 +101,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 38px;
 }
 
 .header__price {
@@ -121,6 +132,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 47px 32px 67px;
 }
 
 .navigation__btns-box {
@@ -139,6 +151,8 @@ html {
   font-weight: 700;
   letter-spacing: 0.24px;
   background: var(--f9-color);
+  cursor: pointer;
+  transition: all 200ms linear;
 }
 
 .navigation__btn_active {
@@ -182,14 +196,21 @@ html {
 
 /* ==================================== */
 
-.menu {}
+.container__inner {
+  margin: 0 auto;
+  max-width: 1340px;
+}
+
+.menu {
+  margin-left: 67px;
+}
 
 .menu__title {
   color: var(--black-color);
   font-family: "Proxima Nova Bold";
   font-size: 32px;
   letter-spacing: 0.32px;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 }
 
 .menu__inner {
@@ -197,11 +218,11 @@ html {
   align-items: center;
   justify-content: start;
   flex-wrap: wrap;
+  gap: 15px;
 }
 
 .menu__card {
   min-width: 280px;
-
   margin-bottom: 11px;
   display: flex;
   align-items: center;
@@ -237,17 +258,21 @@ html {
 }
 
 .card__size {
-  display: grid;
+/*   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 5px;
+  column-gap: 5px; */
+  display: flex;
+  gap: 5px;
 }
 
 .card__btn {
+  flex: 1 1 auto;
   cursor: pointer;
   border-radius: 5px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
   border: none;
   height: 32px;
+  transition: background 200ms linear;
 }
 
 .card__btn_active {
@@ -280,6 +305,16 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.card__add:hover {
+  border-color: #b73b0a;
+  color: #b73b0a;
+}
+
+.card__add:hover .card__add-count {
+  background: #b73b0a;
 }
 
 .card__add-plus {

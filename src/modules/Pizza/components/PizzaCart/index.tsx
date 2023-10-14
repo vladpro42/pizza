@@ -1,15 +1,33 @@
 import { useState } from "react"
 import { PizzaState } from "../../slice/pizzaSlice"
+import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks"
+import { Cart, addItemToCart } from "../../../Basket/api/basket.slice"
+import { selectTotalPrice } from "../../../Basket/api/basket.slice"
 
 type IPropertyPizza = {
     pizza: PizzaState
 }
 
+const types = ["тонкое", "традиционное"]
+
 const PizzaCart = ({ pizza }: IPropertyPizza) => {
 
+    const dispatch = useAppDispatch()
+
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>, item: PizzaState) => {
-        console.log(event.currentTarget)
-        console.log(activeType, activeSize)
+
+        const payload: Cart = {
+            uniqId: window.crypto.randomUUID(),
+            id: item.id,
+            imgUrl: item.imgUrl,
+            price: item.price,
+            title: item.title,
+            type: item.types[activeType] === 0 ? "тонкое" : "традиционное",
+            size: item.sizes[activeSize],
+            count: 1,
+        }
+
+        dispatch(addItemToCart(payload))
     }
 
     const [activeType, setActiveType] = useState(0)
@@ -29,6 +47,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
         setActivSize(+event.currentTarget.dataset.index)
     }
 
+
     return <div className="menu__card">
         <img className="card__img" src="/img/pizza1.jpg" alt="" />
         <h3 className="card__title">{pizza.title}</h3>
@@ -42,11 +61,10 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
                             key={item}
                             className={typesIndex === activeType ? ["card__btn", "card__btn_active"].join(" ") : "card__btn"}
                         >
-                            {item === 0 ? "тонкое" : "традиционное"}
+                            {item === 0 ? types[item] : types[item]}
                         </button>
                     })
                 }
-
             </div>
             <div className="card__size">
                 {

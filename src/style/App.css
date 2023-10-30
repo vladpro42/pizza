@@ -102,6 +102,7 @@ button {
   align-items: center;
   justify-content: center;
   margin-right: 38px;
+  text-decoration: none;
 }
 
 .header__price {
@@ -258,7 +259,7 @@ button {
 }
 
 .card__size {
-/*   display: grid;
+  /*   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 5px; */
   display: flex;
@@ -331,4 +332,58 @@ button {
   align-items: center;
   justify-content: center;
   margin-left: 9px;
+}
+
+.basket__wrapper_clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.basket__title_clear {
+  margin-top: 160px;
+  color: var(--black-color);
+  font-family: "Proxima Nova Bold";
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.32px;
+}
+
+.basket__subtitle_clear {
+  margin-top: 10px;
+  color: #777;
+  text-align: center;
+  font-family: "Proxima Nova";
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.18px;
+  max-width: 547px;
+}
+
+.basket_img {
+  margin-top: 50px;
+}
+
+.nav__back_clear {
+  width: 210px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  background: #282828;
+  color: var(--white-color);
+  text-align: center;
+  font-family: "Proxima Nova Bold";
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.24px;
+  margin: 75px 0 163px;
+  cursor: pointer;
+  transition: box-shadow 200ms linear;
+}
+
+.nav__back_clear:hover {
+  box-shadow: 0 0 9px 1px black;
 }

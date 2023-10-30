@@ -49,20 +49,19 @@
     stroke: #2d2c2c;
 }
 
-.order__list {
-    display: flex;
-    flex-direction: column;
-}
+.order__list {}
 
 .order__item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 400px auto auto auto;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
     border-top: 1px solid var(--f9-color);
     padding-top: 44px;
 }
 
 .box {
+    justify-self: start;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,6 +91,8 @@
 }
 
 .order__counter {
+    align-self: center;
+    justify-self: center;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -112,6 +113,8 @@
 
 .counter__value,
 .item__price {
+    align-self: center;
+    justify-self: center;
     color: var(--black-color);
     font-family: "Proxima Nova Bold";
     font-size: 22px;
@@ -195,4 +198,59 @@
 
 .nav__pay:hover {
     box-shadow: 0 0 15px 1px rgb(176, 176, 176);
+}
+
+
+.basket__wrapper_clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.basket__title_clear {
+    margin-top: 160px;
+    color: var(--black-color);
+    font-family: "Proxima Nova Bold";
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.32px;
+}
+
+.basket__subtitle_clear {
+    margin-top: 10px;
+    color: #777;
+    text-align: center;
+    font-family: "Proxima Nova";
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.18px;
+    max-width: 547px;
+}
+
+.basket_img {
+    margin-top: 50px;
+}
+
+.nav__back_clear {
+    width: 210px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    background: #282828;
+    color: var(--white-color);
+    text-align: center;
+    font-family: "Proxima Nova Bold";
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.24px;
+    margin: 75px 0 163px;
+    cursor: pointer;
+    transition: box-shadow 200ms linear;
+}
+
+.nav__back_clear:hover {
+    box-shadow: 0 0 9px 1px black;
 }

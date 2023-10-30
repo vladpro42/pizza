@@ -3,6 +3,8 @@ import Title from "../Title"
 import { useAppSelector } from "../../hooks/hooks"
 import { selectItems } from "../../modules/Basket/api/basket.slice"
 import { getTotalCount, getTotalPrice } from "../../modules/Basket/utils/utils"
+import { Link } from "react-router-dom"
+
 
 const Header = () => {
 
@@ -15,12 +17,12 @@ const Header = () => {
     return <header className="header">
         <div className="header__inner">
             <Title />
-            <button className="header__btn">
+            <Link to={"/basket"} className="header__btn">
                 <span className="header__price">{totalPrice} ₽</span>
                 <span className="header__basket">
                     {countPizza}
                 </span>
-            </button>
+            </Link>
         </div>
     </header>
 }

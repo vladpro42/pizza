@@ -1,23 +1,28 @@
 import './style/App.css';
 import MainPage from './pages/MainPage';
 import BasketPage from './pages/BasketPage';
-import { useEffect } from 'react';
+import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
+import ErrorPage from './pages/ErrorPage';
+
+
+export const router = createBrowserRouter(createRoutesFromElements(
+  <>
+    <Route path='/' element={<MainPage />} errorElement={<ErrorPage />} />
+    <Route path='/basket' element={<BasketPage />} />
+  </>
+
+))
 
 function App() {
 
-  const basketUrl = window.location.href.split("/").at(-1)
+  //const error = useRouteError();
 
-  /* 
-    if (basketUrl === "basket") {
-      return <div className="App">
-        <BasketPage />
-      </div>
-    } */
+
+
+
 
   return (
     <div className="App">
-      <MainPage />
-      {basketUrl === 'basket' && <BasketPage />}
     </div>
   );
 }

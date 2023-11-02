@@ -2,9 +2,11 @@ import { useState } from "react"
 import { PizzaState } from "../../slice/pizzaSlice"
 import { useAppDispatch } from "../../../../hooks/hooks"
 import { Cart, addItemToCart } from "../../../Basket/api/basket.slice"
+import OrderCounter from "../../../Basket/components/OrderCounter"
+import AddBtnToBasket from "../AddBtnToBasket"
 
 
-type IPropertyPizza = {
+export type IPropertyPizza = {
     pizza: PizzaState
 }
 
@@ -29,12 +31,13 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
             size: item.sizes[activeSize],
             count: 1,
         }
-
+        e.currentTarget.dataset.uniqid = payload.uniqId
         dispatch(addItemToCart(payload))
     }
 
     const [activeType, setActiveType] = useState(0)
     const [activeSize, setActivSize] = useState(0)
+    const [isAlert, setIsAlert] = useState(false)
 
     const handleClickType = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
         setActiveType(index)
@@ -85,10 +88,12 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
                     </svg>
                 </span>
                 <span className="card__add-text">Добавить</span>
-                <span className="card__add-count">2</span>
+                <span className="card__add-count">1</span>
             </button>
+            {/* <AddBtnToBasket pizza={pizza} activeSize={activeSize} activeType={activeType} /> */}
         </div>
     </div>
 }
 
 export default PizzaCart
+

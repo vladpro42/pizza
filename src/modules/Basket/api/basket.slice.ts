@@ -71,6 +71,7 @@ export const { addItemToCart, removeItemfromCart, incrementCount, decrementCount
 
 export const selectItems = (state: RootState) => state.rootReducer.order
 export const selectTotalPrice = (state: RootState) => state.rootReducer.order.totalPrice
+export const selectPizza = (state: RootState) => state.rootReducer.pizza
 
 
 export default basketSlice.reducer

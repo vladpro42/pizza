@@ -4,11 +4,13 @@ import { useAppSelector } from "../../hooks/hooks";
 import { PizzaState, selectPizza } from "./slice/pizzaSlice";
 import PizzaCart from "./components/PizzaCart";
 import { selectActiveCategory } from "./slice/pizzaSlice";
+import SkeletonCart from "./components/SkeletonCart";
 
 
 const Pizza: React.FC = () => {
 
-    const pizza = useAppSelector(selectPizza)
+    const pizzas = useAppSelector(selectPizza)
+
     const activeCategory = useAppSelector(selectActiveCategory)
 
     function filterByCategory(item: PizzaState) {
@@ -18,6 +20,8 @@ const Pizza: React.FC = () => {
         return item.category === activeCategory
     }
 
+    const list = new Array(12).fill(0)
+
 
     return <div className="container__inner">
         <NavigationPizza />
@@ -25,10 +29,11 @@ const Pizza: React.FC = () => {
             <h2 className="menu__title">Все пиццы</h2>
             <div className="menu__inner">
                 {
-                    pizza.filter(filterByCategory).map((item) => {
+                    pizzas.filter(filterByCategory).map((item) => {
                         return <PizzaCart key={item.id} pizza={item} />
                     })
                 }
+                <SkeletonCart />
             </div>
         </div>
     </div>

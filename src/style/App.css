@@ -23,13 +23,13 @@
 
 html {
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 *,
 *::after,
 *::before {
   box-sizing: border-box;
-  font-size: 16px;
 }
 
 button {
@@ -40,6 +40,8 @@ button {
 
 .body {
   background: #FFDF8C;
+  padding: 50px 0 70px;
+  min-height: 100vh;
 }
 
 .container {
@@ -74,7 +76,7 @@ button {
 .header__title {
   color: var(--title-color);
   font-family: "Proxima Nova Bold";
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0.24px;
   text-transform: uppercase;
@@ -83,7 +85,7 @@ button {
 .header__subtitle {
   color: var(--gray-color);
   font-family: "Proxima Nova";
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -170,7 +172,7 @@ button {
 .sort__title {
   color: var(--nav-btn-color);
   font-family: "Proxima Nova Bold";
-  font-size: 14px;
+  font-size: 0.9rem;
   letter-spacing: 0.21px;
   margin-right: 8px;
 }
@@ -179,7 +181,7 @@ button {
   border: none;
   color: var(--orange-color);
   font-family: "Proxima Nova";
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.21px;
   border-bottom: 1px dashed #FE5F1E;
@@ -188,7 +190,7 @@ button {
 .sort__param {
   color: var(--black-color);
   font-family: "Proxima Nova";
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.21px;
 }
@@ -209,7 +211,7 @@ button {
 .menu__title {
   color: var(--black-color);
   font-family: "Proxima Nova Bold";
-  font-size: 32px;
+  font-size: 2rem;
   letter-spacing: 0.32px;
   margin-bottom: 35px;
 }
@@ -220,6 +222,7 @@ button {
   justify-content: start;
   flex-wrap: wrap;
   gap: 15px;
+  padding-bottom: 15px;
 }
 
 .menu__card {
@@ -238,7 +241,7 @@ button {
 .card__title {
   color: var(--black-color);
   font-family: "Proxima Nova Bold";
-  font-size: 20px;
+  font-size: 1.3rem;
   letter-spacing: 0.2px;
   margin-bottom: 22px;
 }
@@ -290,7 +293,7 @@ button {
 .card__price {
   color: var(--black-color);
   font-family: "Proxima Nova Bold";
-  font-size: 22px;
+  font-size: 1.4rem;
   letter-spacing: 0.33px;
   font-weight: 700;
   cursor: pointer;
@@ -307,6 +310,11 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: transform 200ms linear;
+}
+
+.card__add:active {
+  transform: translateY(5px);
 }
 
 .card__add:hover {
@@ -334,56 +342,61 @@ button {
   margin-left: 9px;
 }
 
-.basket__wrapper_clear {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+@media (max-width: 1200px) {
+
+  .container {
+    max-width: 1100px;
+  }
+
+  .navigation__btns-box {
+    flex-wrap: wrap;
+  }
+
+  .menu {
+    margin-left: 20px;
+  }
 }
 
-.basket__title_clear {
-  margin-top: 160px;
-  color: var(--black-color);
-  font-family: "Proxima Nova Bold";
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 0.32px;
+
+@media (max-width: 630px) {
+  html {
+    font-size: 14px;
+  }
+
+  .header {
+    margin-left: 0;
+    padding: 5px;
+  }
+
+  .navigation {
+    flex-direction: column;
+    gap: 15px;
+    margin: 0;
+    padding: 5px;
+  }
+
+  .menu__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.basket__subtitle_clear {
-  margin-top: 10px;
-  color: #777;
-  text-align: center;
-  font-family: "Proxima Nova";
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: 0.18px;
-  max-width: 547px;
-}
+@media (max-width: 390px) {
+  .header__inner {
+    height: initial;
+    row-gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    align-content: space-between;
+  }
 
-.basket_img {
-  margin-top: 50px;
-}
+  .title__wrap {
+    align-self: center;
+  }
 
-.nav__back_clear {
-  width: 210px;
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 30px;
-  background: #282828;
-  color: var(--white-color);
-  text-align: center;
-  font-family: "Proxima Nova Bold";
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.24px;
-  margin: 75px 0 163px;
-  cursor: pointer;
-  transition: box-shadow 200ms linear;
-}
-
-.nav__back_clear:hover {
-  box-shadow: 0 0 9px 1px black;
+  .header__btn {
+    justify-self: center;
+  }
 }

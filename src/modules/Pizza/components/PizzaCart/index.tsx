@@ -1,9 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { PizzaState } from "../../slice/pizzaSlice"
 import { useAppDispatch } from "../../../../hooks/hooks"
 import { Cart, addItemToCart } from "../../../Basket/api/basket.slice"
 import OrderCounter from "../../../Basket/components/OrderCounter"
-import AddBtnToBasket from "../AddBtnToBasket"
 
 
 export type IPropertyPizza = {
@@ -37,16 +36,20 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
 
     const [activeType, setActiveType] = useState(0)
     const [activeSize, setActivSize] = useState(0)
-    const [isAlert, setIsAlert] = useState(false)
+    const [pizzaPriceAcrive, setPizzaPriceAcrive] = useState(pizza.price)
+
 
     const handleClickType = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
         setActiveType(index)
     }
 
-    const handleClickSize = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
+    const handleClickSize = (e: React.MouseEvent<HTMLButtonElement>, index: number, item: number) => {
+        const constPriceOfPizza = 26
+        const price = Math.round(Math.round(item / constPriceOfPizza * 100) / 100 * pizza.price)
+        //const price = Math.round(item / constPriceOfPizza * 100 / 100 * pizza.price)
+        setPizzaPriceAcrive(price)
         setActivSize(index)
     }
-
 
     return <div className="menu__card">
         <img className="card__img" src="/img/pizza1.jpg" alt="" />
@@ -70,7 +73,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
                     pizza.sizes.map((item, sizesIndex) => {
                         return <button
                             key={item}
-                            onClick={e => handleClickSize(e, sizesIndex)}
+                            onClick={e => handleClickSize(e, sizesIndex, item)}
                             className={sizesIndex === activeSize ? ["card__btn", "card__btn_active"].join(" ") : "card__btn"}
                         >
                             {item} см.
@@ -80,7 +83,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
             </div>
         </div >
         <div className="card__footer">
-            <p className="card__price">от {pizza.price} ₽</p>
+            <p className="card__price">от {pizzaPriceAcrive} ₽</p>
             <button onClick={e => handleClickAddBasket(e, pizza)} className="card__add">
                 <span className="card__add-plus">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -90,7 +93,6 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
                 <span className="card__add-text">Добавить</span>
                 <span className="card__add-count">1</span>
             </button>
-            {/* <AddBtnToBasket pizza={pizza} activeSize={activeSize} activeType={activeType} /> */}
         </div>
     </div>
 }

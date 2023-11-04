@@ -342,10 +342,16 @@ button {
   margin-left: 9px;
 }
 
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1100px;
+  }
+}
+
 @media (max-width: 1200px) {
 
   .container {
-    max-width: 1100px;
+    max-width: 1000px;
   }
 
   .navigation__btns-box {
@@ -355,6 +361,15 @@ button {
   .menu {
     margin-left: 20px;
   }
+}
+
+@media (max-width: 1050px) {
+
+  .container {
+    max-width: 960px;
+    padding: 0 10px;
+  }
+
 }
 
 
@@ -390,6 +405,7 @@ button {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     align-content: space-between;
+    padding-top: 10px;
   }
 
   .title__wrap {

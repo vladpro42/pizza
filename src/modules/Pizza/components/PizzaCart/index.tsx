@@ -24,7 +24,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
             uniqId: window.crypto.randomUUID(),
             id: item.id,
             imgUrl: item.imgUrl,
-            price: item.price,
+            price: pizzaPriceAcrive,
             title: item.title,
             type: item.types[activeType] === 0 ? "тонкое" : "традиционное",
             size: item.sizes[activeSize],

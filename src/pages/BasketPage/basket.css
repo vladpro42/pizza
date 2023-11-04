@@ -2,6 +2,7 @@
     padding-top: 50px;
     background: #FFDF8C;
     padding-bottom: 130px;
+    min-height: 100vh;
 }
 
 .basket__wrapper {

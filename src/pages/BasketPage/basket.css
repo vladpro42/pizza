@@ -305,7 +305,7 @@
     }
 
     .item__price {
-        grid-row:  2 / 3;
+        grid-row: 2 / 3;
         grid-column: 3 / 5;
     }
 
@@ -324,14 +324,19 @@
     .statistics__number-of-pizzas {
         font-size: 1rem;
     }
+
     .statistics__price {
         font-size: 1rem;
     }
 
     .basket__nav {
         flex-wrap: wrap;
-        gap:10px;
+        gap: 10px;
     }
 }
 
-@media (max-width: 413px) {}
+@media (max-width: 413px) {
+    .basket__title span {
+        margin-left: 5px;
+    }
+}

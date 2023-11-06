@@ -145,6 +145,7 @@ button {
 }
 
 .navigation__btn {
+  font-size: 1rem;
   border: none;
   padding: 15px 30px;
   border-radius: 30px;
@@ -343,6 +344,12 @@ button {
 }
 
 
+@media (min-width: 1200px) {
+  html {
+    font-size: 20px;
+  }
+}
+
 @media (max-width: 1200px) {
 
   .container {
@@ -409,5 +416,20 @@ button {
 
   .header__btn {
     justify-self: center;
+  }
+}
+
+
+@media (max-width: 325px) {
+
+  
+
+  .menu__card {
+    min-width: 275px;
+  }
+
+  .card__buttons {
+    width: 90%;
+    height: 90%;
   }
 }

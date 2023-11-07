@@ -2,34 +2,39 @@
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    background: #aaa;
-    opacity: 0.5;
 }
 
 .card__title_skeleton {
-    background: #aaa;
-    opacity: 0.5;
     width: 150px;
     height: 20px;
 }
 
-.card__btn_skeleton {
-    background: #aaa;
-    opacity: 0.5;
-}
+.card__btn_skeleton {}
 
 .card__price_skeleton {
-    background: #aaa;
-    opacity: 0.5;
     width: 87px;
     height: 20px;
     margin-left: 5px;
 }
 
 .card__add_skeleton {
-    background: #aaa;
-    opacity: 0.5;
     width: 155px;
     height: 40px;
     border: none;
+}
+
+.skeleton__color {
+    background: #aaa;
+    opacity: 0.5;
+    animation: animateSkeleton 900ms alternate infinite linear;
+}
+
+@keyframes animateSkeleton {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 0.8;
+    }
 }

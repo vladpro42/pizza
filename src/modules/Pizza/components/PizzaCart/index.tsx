@@ -2,7 +2,9 @@ import { useEffect, useState } from "react"
 import { PizzaState } from "../../slice/pizzaSlice"
 import { useAppDispatch } from "../../../../hooks/hooks"
 import { Cart, addItemToCart } from "../../../Basket/api/basket.slice"
-import OrderCounter from "../../../Basket/components/OrderCounter"
+import { useAppSelector } from "../../../../hooks/hooks"
+import { selectItems } from "../../../Basket/api/basket.slice"
+import { getTotalCount } from "../../../Basket/utils/utils"
 
 
 export type IPropertyPizza = {
@@ -14,6 +16,7 @@ const types = ["тонкое", "традиционное"]
 
 
 const PizzaCart = ({ pizza }: IPropertyPizza) => {
+
 
 
     const dispatch = useAppDispatch()
@@ -50,6 +53,9 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
         setPizzaPriceAcrive(price)
         setActivSize(index)
     }
+
+    const pizzasInBasket = useAppSelector(selectItems);
+    const countPizzaInBasket = getTotalCount(pizzasInBasket.items)
 
     return <div className="menu__card">
         <img className="card__img" src="/img/pizza1.jpg" alt="" />
@@ -91,7 +97,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
                     </svg>
                 </span>
                 <span className="card__add-text">Добавить</span>
-                <span className="card__add-count">1</span>
+                <span className="card__add-count">{countPizzaInBasket}</span>
             </button>
         </div>
     </div>

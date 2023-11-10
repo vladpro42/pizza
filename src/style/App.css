@@ -236,6 +236,8 @@ button {
 }
 
 .card__img {
+  width: 260px;
+  height: 260px;
   margin-bottom: 11px;
 }
 
@@ -422,7 +424,7 @@ button {
 
 @media (max-width: 325px) {
 
-  
+
 
   .menu__card {
     min-width: 275px;

@@ -1,5 +1,7 @@
+import { type } from "os";
 import type { RootState } from "../../../store/main.store"
-import { ActionEnum, ActionSortPizzaByCategory, ActionSortPizzaByPrice, PizzaAction, PizzaState } from "./pizza.types";
+import { Dispatch } from "redux"
+import { ActionEnum, ActionGetPizza, ActionSortPizzaByCategory, ActionSortPizzaByPrice, PizzaAction, PizzaState } from "./pizza.types";
 
 function compareString(a: PizzaState, b: PizzaState,) {
 
@@ -14,7 +16,7 @@ function compareString(a: PizzaState, b: PizzaState,) {
 
 
 const pizzaArray: PizzaState[] = [
-    {
+    /* {
         id: 1,
         title: "Чизбургер-пицца",
         price: 395,
@@ -63,18 +65,29 @@ const pizzaArray: PizzaState[] = [
         category: 2,
         sizes: [26, 30, 40],
         types: [0, 1]
-    },
+    }, */
 
 ]
 
 const initialState = {
     activeCategory: 0,
-    pizzaArray
+    pizzaArray,
 }
 
+export function fetchPizzas() {
+    return (dispath: Dispatch<PizzaAction>) => {
+        fetch("http://localhost:3000/pizza")
+            .then(res => res.json())
+            .then(json => dispath(getPizzaAction(json)))
+    }
+}
 
 export const pizzaReducer = (state = initialState, action: PizzaAction) => {
     switch (action.type) {
+
+        case ActionEnum.getPizza:
+            return { ...state, pizzaArray: action.payload }
+
         case ActionEnum.sortPizzaByPrice:
             if (action.payload === "price") {
                 return { ...state, pizzaArray: [...state.pizzaArray].sort((a, b) => a.price - b.price) }
@@ -106,3 +119,8 @@ export const sortPizzaByCategory = (value: number): ActionSortPizzaByCategory =>
     type: ActionEnum.sortPizzaByCategory,
     payload: value
 });
+
+export const getPizzaAction = (value: PizzaState[]): ActionGetPizza => ({
+    type: ActionEnum.getPizza,
+    payload: value
+})

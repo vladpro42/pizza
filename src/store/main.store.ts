@@ -1,6 +1,7 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import { basketReducer } from "../modules/Basket/api/basket.slice";
 import { pizzaReducer } from "../modules/Pizza/slice/pizzaSlice";
+import thunk from "redux-thunk";
 
 
 const mainReducer = combineReducers({
@@ -8,7 +9,7 @@ const mainReducer = combineReducers({
     basket: basketReducer
 })
 
-export const oldStore = createStore(mainReducer)
+export const oldStore = createStore(mainReducer, applyMiddleware(thunk))
 
 export type RootState = ReturnType<typeof oldStore.getState>
 

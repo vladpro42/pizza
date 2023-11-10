@@ -6,10 +6,18 @@ import { selectActiveCategory } from "./slice/pizzaSlice";
 import SkeletonCart from "./components/SkeletonCart";
 import { PizzaState } from "./slice/pizza.types";
 import { selectPizza } from "./slice/pizzaSlice";
+import { useEffect } from "react"
+import { useAppDispatch } from "../../hooks/hooks";
+import { fetchPizzas } from "./slice/pizzaSlice";
 
-const Pizza: React.FC = () => {
+const Pizza = () => {
 
-    const pizzas = useAppSelector(selectPizza)
+    const dispatch: any = useAppDispatch()
+    useEffect(() => {
+        dispatch(fetchPizzas())
+    }, [])
+
+    const pizzas: PizzaState[] = useAppSelector(selectPizza)
 
     const activeCategory = useAppSelector(selectActiveCategory)
 
@@ -20,8 +28,22 @@ const Pizza: React.FC = () => {
         return item.category === activeCategory
     }
 
-    const list = new Array(12).fill(0)
+    if (pizzas.length == 0) {
+        return <div className="container__inner">
+            <NavigationPizza />
+            <div className="menu">
+                <h2 className="menu__title">Все пиццы</h2>
+                <div className="menu__inner">
+                    {
+                        new Array(8).fill(0).map((item, index) => {
+                            return <SkeletonCart />
+                        })
+                    }
+                </div>
+            </div>
+        </div>
 
+    }
 
     return <div className="container__inner">
         <NavigationPizza />
@@ -33,7 +55,6 @@ const Pizza: React.FC = () => {
                         return <PizzaCart key={item.id} pizza={item} />
                     })
                 }
-                <SkeletonCart />
             </div>
         </div>
     </div>

@@ -11,7 +11,8 @@ export interface PizzaState {
 
 export enum ActionEnum {
     sortPizzaByPrice = "sortPizzaByPrice",
-    sortPizzaByCategory = "sortPizzaByCategory"
+    sortPizzaByCategory = "sortPizzaByCategory",
+    getPizza = "getPizza",
 }
 
 export interface ActionSortPizzaByPrice {
@@ -23,4 +24,9 @@ export interface ActionSortPizzaByCategory {
     payload: number
 }
 
-export type PizzaAction = ActionSortPizzaByPrice | ActionSortPizzaByCategory;
+export interface ActionGetPizza {
+    type: ActionEnum.getPizza
+    payload: PizzaState[]
+}
+
+export type PizzaAction = ActionSortPizzaByPrice | ActionSortPizzaByCategory | ActionGetPizza

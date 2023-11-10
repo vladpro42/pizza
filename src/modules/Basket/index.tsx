@@ -10,10 +10,12 @@ const Basket = () => {
 
     const pizzas = useAppSelector(selectItems)
 
-    const totalPrice = getTotalPrice(pizzas.items)
+    const totalPrice = getTotalPrice(pizzas)
 
     const dispatch = useAppDispatch();
-    if (pizzas.items.length === 0) {
+
+    console.log("render basket")
+    if (pizzas.length === 0) {
         return <div className="basket__wrapper_clear">
             <h1 className="basket__title_clear">Корзина пустая &#128533;</h1>
             <p className="basket__subtitle_clear">
@@ -46,11 +48,11 @@ const Basket = () => {
         </div>
         <ul className="order__list">
             {
-                pizzas.items.map((item, index) => <OrderItem pizza={item} key={index} />)
+                pizzas.map((item, index) => <OrderItem pizza={item} key={index} />)
             }
         </ul>
         <div className="statistics">
-            <p className="statistics__number-of-pizzas">Всего пицц: <b>{pizzas.items.length} шт.</b></p>
+            <p className="statistics__number-of-pizzas">Всего пицц: <b>{pizzas.length} шт.</b></p>
             <p className="statistics__price">Сумма заказа: <b className="bold__orange">{totalPrice} ₽</b></p>
         </div>
         <div className="basket__nav">

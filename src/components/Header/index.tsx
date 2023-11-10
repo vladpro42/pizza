@@ -10,9 +10,9 @@ const Header = () => {
 
     const pizza = useAppSelector(selectItems);
 
-    const totalPrice = getTotalPrice(pizza.items);
+    const totalPrice = getTotalPrice(pizza);
 
-    const countPizza = getTotalCount(pizza.items)
+    const countPizza = getTotalCount(pizza)
 
     return <header className="header">
         <div className="header__inner">

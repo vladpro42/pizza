@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { PizzaState } from "../../slice/pizzaSlice"
+import { PizzaState } from "../../slice/pizza.types"
 import { useAppDispatch } from "../../../../hooks/hooks"
-import { Cart, addItemToCart } from "../../../Basket/api/basket.slice"
 import { useAppSelector } from "../../../../hooks/hooks"
-import { selectItems } from "../../../Basket/api/basket.slice"
+import { addItemToCart, selectItems } from "../../../Basket/api/basket.slice"
 import { getTotalCount } from "../../../Basket/utils/utils"
+import { Cart } from "../../../Basket/api/basket.types"
 
 
 export type IPropertyPizza = {
@@ -55,7 +55,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
     }
 
     const pizzasInBasket = useAppSelector(selectItems);
-    const countPizzaInBasket = getTotalCount(pizzasInBasket.items)
+    const countPizzaInBasket = getTotalCount(pizzasInBasket)
 
     return <div className="menu__card">
         <img className="card__img" src="/img/pizza1.jpg" alt="" />

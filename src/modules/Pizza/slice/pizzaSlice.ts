@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice, current } from "@reduxjs/toolkit"
 import type { RootState } from "../../../store/main.store"
+import { ActionEnum, ActionSortPizzaByCategory, ActionSortPizzaByPrice, PizzaAction, PizzaState } from "./pizza.types";
 
 function compareString(a: PizzaState, b: PizzaState,) {
 
@@ -12,16 +12,6 @@ function compareString(a: PizzaState, b: PizzaState,) {
     return 0;
 }
 
-export interface PizzaState {
-    id: number,
-    title: string,
-    price: number,
-    imgUrl: string,
-    types: [number, number],
-    sizes: number[],
-    rating: number,
-    category: number,
-}
 
 const pizzaArray: PizzaState[] = [
     {
@@ -82,32 +72,37 @@ const initialState = {
     pizzaArray
 }
 
-export const pizzaSlice = createSlice({
-    name: "pizza",
-    initialState,
-    reducers: {
-        sortPizzaByPrice: (state, action: PayloadAction<string>) => {
+
+export const pizzaReducer = (state = initialState, action: PizzaAction) => {
+    switch (action.type) {
+        case ActionEnum.sortPizzaByPrice:
             if (action.payload === "price") {
-                state.pizzaArray = state.pizzaArray.sort((a, b) => a.price - b.price)
+                return { ...state, pizzaArray: [...state.pizzaArray].sort((a, b) => a.price - b.price) }
             } else if (action.payload === "rating") {
-                state.pizzaArray = state.pizzaArray.sort((a, b) => b.rating - a.rating)
+                return { ...state, pizzaArray: [...state.pizzaArray].sort((a, b) => b.rating - a.rating) }
             } else if (action.payload === "abs") {
-                state.pizzaArray = state.pizzaArray.sort(compareString)
+                return { ...state, pizzaArray: [...state.pizzaArray].sort(compareString) }
             }
-        },
+            return { ...state };
+        case ActionEnum.sortPizzaByCategory:
+            return {
+                ...state,
+                activeCategory: action.payload
+            }
+        default:
+            return { ...state };
+    }
+}
 
-        sortPizzaByCategory: (state, action: PayloadAction<number>) => {
-          /*   if (action.payload === 0) {
-                return state
-            } */
-            state.activeCategory = action.payload
-        }
-    },
-})
+export const selectPizza = (state: RootState) => state.pizza.pizzaArray
+export const selectActiveCategory = (state: RootState) => state.pizza.activeCategory
 
-export const { sortPizzaByPrice, sortPizzaByCategory } = pizzaSlice.actions
+export const sortPizzaByPrice = (value: string): ActionSortPizzaByPrice => ({
+    type: ActionEnum.sortPizzaByPrice,
+    payload: value
+});
 
-export const selectPizza = (state: RootState) => state.rootReducer.pizza.pizzaArray
-export const selectActiveCategory = (state: RootState) => state.rootReducer.pizza.activeCategory
-
-export default pizzaSlice.reducer
+export const sortPizzaByCategory = (value: number): ActionSortPizzaByCategory => ({
+    type: ActionEnum.sortPizzaByCategory,
+    payload: value
+});

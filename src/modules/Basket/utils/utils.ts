@@ -1,4 +1,4 @@
-import { Cart } from "../api/basket.slice";
+import { Cart } from "../api/basket.types";
 
 export function getTotalPrice(array: Cart[]) {
     const total = array.reduce((prev, cur) => {

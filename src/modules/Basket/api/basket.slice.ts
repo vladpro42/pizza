@@ -1,77 +1,94 @@
-import { createSlice, current } from "@reduxjs/toolkit"
 import type { RootState } from "../../../store/main.store"
-import { PayloadAction } from "@reduxjs/toolkit"
+import {
+    InitialState,
+    Cart,
+    ActionBasket,
+    ActionAddItemToCart,
+    ActionRemoveAllItemsFromCart,
+    ActionDecrementCount,
+    ActionIncrementCount,
+    ActionRemoveItemfromCart
+} from "./basket.types"
+import { ActionEnum } from "./basket.types"
 
-
-export type Cart = {
-    uniqId: string,
-    id: number,
-    imgUrl: string,
-    price: number,
-    title: string,
-    type: "тонкое" | "традиционное",
-    size: number,
-    count: number,
-}
-
-export interface initialState {
-    totalPrice: number,
-    items: Cart[]
-}
-
-const initialState: initialState = {
+const initialState: InitialState = {
     items: [],
     totalPrice: 0,
 }
 
-export const basketSlice = createSlice({
-    name: "basket",
-    initialState,
-    reducers: {
-        addItemToCart(state, action: PayloadAction<Cart>) {
-            state.items.push(action.payload)
-        },
 
-        removeItemfromCart(state, action: PayloadAction<string>) {
-            state.items = state.items.filter(item => {
-                if (item.uniqId !== action.payload) {
-                    return item
-                }
-            })
-        },
-
-        incrementCount(state, action: PayloadAction<string>) {
-            state.items.filter(item => {
-                if (item.uniqId === action.payload) {
-                    item.count++
-                }
-            })
-        },
-
-        decrementCount(state, action: PayloadAction<string>) {
-            state.items.filter(item => {
-                if (item.uniqId === action.payload) {
-                    if (item.count === 0) {
-                        return
-                    } else {
-                        item.count--
+export function basketReducer(state = initialState, action: ActionBasket) {
+    switch (action.type) {
+        case ActionEnum.addItemToCart:
+            return { ...state, items: [...state.items, action.payload] };
+        case ActionEnum.removeItemfromCart:
+            return { ...state, items: [...state.items].filter(item => item.uniqId !== action.payload) };
+        case ActionEnum.incrementCount:
+            console.log(state)
+            return {
+                ...state, items: [...state.items].filter(item => {
+                    if (item.uniqId === action.payload) {
+                        item.count = item.count + 1
+                        return item
                     }
-                }
-            })
-        },
+                    return item
+                })
+            };
+        case ActionEnum.decrementCount:
+            return {
+                ...state, items: [...state.items].filter(item => {
+                    if (item.uniqId === action.payload) {
+                        if (item.count === 0) {
+                            return item
+                        } else {
+                            item.count = item.count - 1
+                            return item
+                        }
+                    }
+                    return item
+                })
+            };
+        case ActionEnum.removeAllItemsFromCart:
+            return { ...state, items: [] };
+        default:
+            return { ...state };
+    }
+}
 
-        removeAllItemsFromCart(state) {
-            state.items = []
-        }
+export const selectItems = (state: RootState) => state.basket.items
+export const selectTotalPrice = (state: RootState) => state.basket.totalPrice
 
-    },
+export const addItemToCart = (value: Cart): ActionAddItemToCart => ({
+    type: ActionEnum.addItemToCart,
+    payload: value
 })
 
-export const { addItemToCart, removeItemfromCart, incrementCount, decrementCount, removeAllItemsFromCart } = basketSlice.actions
 
-export const selectItems = (state: RootState) => state.rootReducer.order
-export const selectTotalPrice = (state: RootState) => state.rootReducer.order.totalPrice
-export const selectPizza = (state: RootState) => state.rootReducer.pizza
+export const removeAllItemsFromCart = (): ActionRemoveAllItemsFromCart => ({
+    type: ActionEnum.removeAllItemsFromCart,
+})
 
 
-export default basketSlice.reducer
+export const decrementCount = (value: string): ActionDecrementCount => ({
+    type: ActionEnum.decrementCount,
+    payload: value
+})
+
+
+export const incrementCount = (value: string): ActionIncrementCount => ({
+    type: ActionEnum.incrementCount,
+    payload: value
+})
+
+export const removeItemfromCart = (value: string): ActionRemoveItemfromCart => ({
+    type: ActionEnum.removeItemfromCart,
+    payload: value
+})
+
+/* 
+export const addItemToCart = (value: Cart): ActionAddItemToCart => ({
+    type: ActionEnum.addItemToCart,
+    payload: value
+})
+
+ */

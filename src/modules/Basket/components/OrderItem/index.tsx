@@ -1,7 +1,6 @@
-import { Cart } from "../../api/basket.slice"
+import { Cart } from "../../api/basket.types"
 import { useAppDispatch } from "../../../../hooks/hooks"
-import { removeItemfromCart, incrementCount, decrementCount } from "../../api/basket.slice"
-import { memo } from "react"
+import { removeItemfromCart } from "../../api/basket.slice"
 import OrderCounter from "../OrderCounter"
 
 
@@ -9,8 +8,7 @@ interface PropsCart {
     pizza: Cart
 }
 
-const OrderItem = memo(({ pizza }: PropsCart) => {
-
+const OrderItem = ({ pizza }: PropsCart) => {
     const dispatch = useAppDispatch()
 
     const deleteItem = (e: React.MouseEvent<HTMLButtonElement>, uniqId: string) => {
@@ -19,29 +17,14 @@ const OrderItem = memo(({ pizza }: PropsCart) => {
 
     return <li className="order__item">
         <div className="box">
-            <img className="box__img" src="/img/pizza1.jpg" alt="" />
+            <img className="box__img" src={pizza.imgUrl} alt="" />
             <div className="box__titles">
                 <h3 className="box__title">{pizza.title}</h3>
                 <p className="box__subtitle">{pizza.type} тесто, {pizza.size} см.</p>
             </div>
         </div>
-        {/* <div className="order__counter">
-            <button onClick={e => { dispatch(decrementCount(pizza.uniqId)) }} className="counter__btn counter__btn_increment">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <circle cx="16" cy="16" r="15" fill="white" stroke="#FE5F1E" strokeWidth="2" />
-                    <path d="M15.0402 15.04H19.8402C20.3704 15.04 20.8002 15.4698 20.8002 16C20.8002 16.5302 20.3704 16.96 19.8402 16.96H15.0402H12.1602C11.63 16.96 11.2002 16.5302 11.2002 16C11.2002 15.4698 11.63 15.04 12.1602 15.04H15.0402Z" fill="#FE5F1E" />
-                </svg>
-            </button>
-            <span className="counter__value">{pizza.count}</span>
-            <button onClick={e => { dispatch(incrementCount(pizza.uniqId)) }} className="counter__btn counter__btn_decrement">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <circle cx="16" cy="16" r="15" fill="white" stroke="#FE5F1E" strokeWidth="2" />
-                    <path d="M19.8402 15.04H16.9602V12.16C16.9602 11.6299 16.5304 11.2 16.0002 11.2C15.47 11.2 15.0402 11.6299 15.0402 12.16V15.04H12.1602C11.63 15.04 11.2002 15.4699 11.2002 16C11.2002 16.5302 11.63 16.96 12.1602 16.96H15.0402V19.84C15.0402 20.3702 15.47 20.8 16.0002 20.8C16.5304 20.8 16.9602 20.3702 16.9602 19.84V16.96H19.8402C20.3704 16.96 20.8002 16.5302 20.8002 16C20.8002 15.4699 20.3704 15.04 19.8402 15.04Z" fill="#EB5A1E" />
-                </svg>
-            </button>
-        </div> */}
         <OrderCounter uniqId={pizza.uniqId} count={pizza.count} />
-        <p className="item__price">{pizza.price * pizza.count} ₽ </p>
+        <p className="item__price">{Math.round(pizza.price * pizza.count * 100) / 100} ₽ </p>
         <button onClick={e => deleteItem(e, pizza.uniqId)} className="item__btn-delete">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                 <circle cx="16" cy="16" r="15" fill="white" stroke="#D7D7D7" strokeWidth="2" />
@@ -49,6 +32,6 @@ const OrderItem = memo(({ pizza }: PropsCart) => {
             </svg>
         </button>
     </li>
-})
+}
 
 export default OrderItem

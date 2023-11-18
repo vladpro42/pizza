@@ -1,12 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from "../rootReducer/rootReducer";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { basketReducer } from "../modules/Basket/api/basket.slice";
+import { pizzaReducer } from "../modules/Pizza/slice/pizzaSlice";
+import thunk from "redux-thunk";
 
-export const store = configureStore({
-    reducer: {
-        rootReducer,
-    }
+
+const mainReducer = combineReducers({
+    pizza: pizzaReducer,
+    basket: basketReducer
 })
 
-export type RootState = ReturnType<typeof store.getState>
+export const oldStore = createStore(mainReducer, applyMiddleware(thunk))
 
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof oldStore.getState>
+
+export type AppDispatch = typeof oldStore.dispatch

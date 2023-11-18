@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { sortPizzaByPrice } from "../../slice/pizzaSlice";
 import { useAppDispatch } from "../../../../hooks/hooks";
-import { sortPizzaByCategory } from "../../slice/pizzaSlice";
+import { sortPizzaByCategory, sortPizzaByPrice } from "../../slice/pizzaSlice";
 
 
 
@@ -18,7 +17,7 @@ const NavigationPizza = () => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
         setActive(index)
     }
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setOptionActive(prev => e.currentTarget.value)
     }

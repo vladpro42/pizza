@@ -236,6 +236,8 @@ button {
 }
 
 .card__img {
+  width: 260px;
+  height: 260px;
   margin-bottom: 11px;
 }
 
@@ -294,7 +296,7 @@ button {
 .card__price {
   color: var(--black-color);
   font-family: "Proxima Nova Bold";
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   letter-spacing: 0.33px;
   font-weight: 700;
   cursor: pointer;
@@ -422,7 +424,7 @@ button {
 
 @media (max-width: 325px) {
 
-  
+
 
   .menu__card {
     min-width: 275px;

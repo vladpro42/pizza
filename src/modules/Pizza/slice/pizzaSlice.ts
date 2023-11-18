@@ -1,4 +1,3 @@
-import { type } from "os";
 import type { RootState } from "../../../store/main.store"
 import { Dispatch } from "redux"
 import { ActionEnum, ActionGetPizza, ActionSortPizzaByCategory, ActionSortPizzaByPrice, PizzaAction, PizzaState } from "./pizza.types";
@@ -74,9 +73,12 @@ const initialState = {
     pizzaArray,
 }
 
+const urlMockApiPizzas = "https://6554f36863cafc694fe73fd2.mockapi.io/pizzas"
+const backendUrl = "http://localhost:3000/pizza"
+
 export function fetchPizzas() {
     return (dispath: Dispatch<PizzaAction>) => {
-        fetch("http://localhost:3000/pizza")
+        fetch(urlMockApiPizzas)
             .then(res => res.json())
             .then(json => dispath(getPizzaAction(json)))
     }

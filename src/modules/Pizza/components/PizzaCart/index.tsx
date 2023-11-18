@@ -17,8 +17,6 @@ const types = ["тонкое", "традиционное"]
 
 const PizzaCart = ({ pizza }: IPropertyPizza) => {
 
-
-
     const dispatch = useAppDispatch()
 
     const handleClickAddBasket = (e: React.MouseEvent<HTMLButtonElement>, item: PizzaState) => {
@@ -58,7 +56,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
     const countPizzaInBasket = getTotalCount(pizzasInBasket)
 
     return <div className="menu__card">
-        <img className="card__img" src="/img/pizza1.jpg" alt="" />
+        <img className="card__img" src={pizza.imgUrl} alt="" />
         <h3 className="card__title">{pizza.title}</h3>
         <div className="card__buttons">
             <div className="card__types">
@@ -69,7 +67,7 @@ const PizzaCart = ({ pizza }: IPropertyPizza) => {
                             key={item}
                             className={typesIndex === activeType ? ["card__btn", "card__btn_active"].join(" ") : "card__btn"}
                         >
-                            {item === 0 ? types[item] : types[item]}
+                            {item === 0 ? types[typesIndex] : types[typesIndex]}
                         </button>
                     })
                 }

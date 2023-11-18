@@ -1,7 +1,6 @@
 import { Cart } from "../../api/basket.types"
 import { useAppDispatch } from "../../../../hooks/hooks"
 import { removeItemfromCart } from "../../api/basket.slice"
-import { memo } from "react"
 import OrderCounter from "../OrderCounter"
 
 
@@ -10,7 +9,6 @@ interface PropsCart {
 }
 
 const OrderItem = ({ pizza }: PropsCart) => {
-    console.log("rerender orderItem")
     const dispatch = useAppDispatch()
 
     const deleteItem = (e: React.MouseEvent<HTMLButtonElement>, uniqId: string) => {
@@ -19,14 +17,14 @@ const OrderItem = ({ pizza }: PropsCart) => {
 
     return <li className="order__item">
         <div className="box">
-            <img className="box__img" src="/img/pizza1.jpg" alt="" />
+            <img className="box__img" src={pizza.imgUrl} alt="" />
             <div className="box__titles">
                 <h3 className="box__title">{pizza.title}</h3>
                 <p className="box__subtitle">{pizza.type} тесто, {pizza.size} см.</p>
             </div>
         </div>
         <OrderCounter uniqId={pizza.uniqId} count={pizza.count} />
-        <p className="item__price">{pizza.price * pizza.count} ₽ </p>
+        <p className="item__price">{Math.round(pizza.price * pizza.count * 100) / 100} ₽ </p>
         <button onClick={e => deleteItem(e, pizza.uniqId)} className="item__btn-delete">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                 <circle cx="16" cy="16" r="15" fill="white" stroke="#D7D7D7" strokeWidth="2" />

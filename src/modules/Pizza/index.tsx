@@ -35,8 +35,8 @@ const Pizza = () => {
                 <h2 className="menu__title">Все пиццы</h2>
                 <div className="menu__inner">
                     {
-                        new Array(8).fill(0).map((item, index) => {
-                            return <SkeletonCart />
+                        new Array(8).fill(0).map((_, index) => {
+                            return <SkeletonCart key={index} />
                         })
                     }
                 </div>

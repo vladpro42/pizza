@@ -10,11 +10,13 @@ const Basket = () => {
 
     const pizzas = useAppSelector(selectItems)
 
+    const totalPizzas = pizzas.reduce((acc, item) => acc + item.count, 0)
+
     const totalPrice = getTotalPrice(pizzas)
+    console.log(totalPrice)
 
     const dispatch = useAppDispatch();
 
-    console.log("render basket")
     if (pizzas.length === 0) {
         return <div className="basket__wrapper_clear">
             <h1 className="basket__title_clear">Корзина пустая &#128533;</h1>
@@ -52,7 +54,7 @@ const Basket = () => {
             }
         </ul>
         <div className="statistics">
-            <p className="statistics__number-of-pizzas">Всего пицц: <b>{pizzas.length} шт.</b></p>
+            <p className="statistics__number-of-pizzas">Всего пицц: <b>{totalPizzas} шт.</b></p>
             <p className="statistics__price">Сумма заказа: <b className="bold__orange">{totalPrice} ₽</b></p>
         </div>
         <div className="basket__nav">
